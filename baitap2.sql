@@ -17,7 +17,7 @@ CREATE TABLE Users (
 GO
 
 INSERT INTO Users (TenDangNhap, SoDienThoai, Email, MatKhauBam, Salt)
-VALUES (N'nguyenvana', '0901234567', N'nguyenvana@example.com', N'samplehashvalue123456', N'samplesalt123');
+VALUES (N'nguyenhaha', '0901234567', N'123@gmail.com', N'samplehashvalue123456', N'samplesalt123');
 
 SELECT * FROM Users;
 GO
