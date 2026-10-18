@@ -161,7 +161,6 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(472, 34);
             txtEmail.TabIndex = 10;
-            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtPassword
             // 
@@ -254,7 +253,6 @@
             Margin = new Padding(2);
             Name = "DangKy";
             Text = "Đăng Ký Tài Khoản";
-            Load += DangKy_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -6,7 +6,7 @@ namespace CRUD_APP
 {
     public static class XuLyNguoiDung
     {
-        // LƯU Ý: Sửa lại chuỗi kết nối này cho đúng với tên Server trong máy của bạn (nhìn ảnh trước bạn gửi là LAPTOP-2LT9ST5A\LENOVO)
+        // Chuỗi kết nối SQL Server (đổi lại tên Server cho đúng với máy của bạn nếu cần).
         private const string ChuoiKetNoi = @"Server=.;Database=QuanLyNguoiDung;Trusted_Connection=True;TrustServerCertificate=True;";
 
         // 1. Hàm xử lý Đăng Ký
@@ -42,7 +42,7 @@ namespace CRUD_APP
             catch (Exception ex)
             {
                 // Bắt mọi lỗi kết nối (ví dụ: tắt SQL Server) để không văng màn hình ngoại lệ
-                throw new Exception("Lỗi kết nối (Đăng ký): " + ex.Message);
+                throw new Exception("Lỗi kết nối (Đăng ký): " + ex.Message, ex);
             }
         }
 
@@ -73,7 +73,7 @@ namespace CRUD_APP
             }
             catch (Exception ex)
             {
-                throw new Exception("Lỗi kết nối (Đăng nhập): " + ex.Message);
+                throw new Exception("Lỗi kết nối (Đăng nhập): " + ex.Message, ex);
             }
         }
     }

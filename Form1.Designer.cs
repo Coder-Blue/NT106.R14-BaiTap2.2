@@ -54,7 +54,7 @@
             llbDangKyTaiKhoan.TabIndex = 47;
             llbDangKyTaiKhoan.TabStop = true;
             llbDangKyTaiKhoan.Text = "Đăng ký tài khoản";
-            llbDangKyTaiKhoan.LinkClicked += llbDangKyTaiKhoan_LinkClicked_1;
+            llbDangKyTaiKhoan.LinkClicked += llbDangKyTaiKhoan_LinkClicked;
             // 
             // llbQuenMatKhau
             // 
