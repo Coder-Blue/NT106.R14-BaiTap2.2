@@ -5,6 +5,8 @@ namespace CRUD_APP
 {
     public partial class DangKy : Form
     {
+        private string? maOTP;
+
         public DangKy()
         {
             InitializeComponent();
@@ -27,6 +29,12 @@ namespace CRUD_APP
             if (mk != xacNhan)
             {
                 MessageBox.Show("Mật khẩu xác nhận không khớp!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(maOTP) || txtOTP.Text.Trim() != maOTP)
+            {
+                MessageBox.Show("Mã OTP không đúng hoặc chưa được gửi!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -59,7 +67,8 @@ namespace CRUD_APP
 
         private void btnOTP_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Mã OTP của bạn là: 123456\n(Vui lòng nhập mã này vào ô OTP bên dưới)", "Thông báo OTP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            maOTP = XuLyNguoiDung.TaoMaOTP();
+            MessageBox.Show("Mã OTP của bạn là: " + maOTP + "\n(Vui lòng nhập mã này vào ô OTP bên dưới)", "Thông báo OTP", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

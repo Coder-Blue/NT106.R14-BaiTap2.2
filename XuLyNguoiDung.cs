@@ -21,7 +21,6 @@ namespace CRUD_APP
                                  VALUES (@ten, @sdt, @email, @bam, @salt)";
             using var cmd = new SqlCommand(sql, conn);
 
-            // Gán giá trị vào tham số
             cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
             cmd.Parameters.Add("@sdt", SqlDbType.VarChar, 10).Value = sdt;
             // Nếu email rỗng thì lưu NULL vào DB
@@ -74,6 +73,104 @@ namespace CRUD_APP
             catch (Exception ex)
             {
                 throw new Exception("Lỗi kết nối (Đăng nhập): " + ex.Message, ex);
+            }
+        }
+
+        // 3. Sinh mã OTP gồm 6 chữ số
+        public static string TaoMaOTP()
+        {
+            return Random.Shared.Next(100000, 1000000).ToString();
+        }
+
+        // 4. Kiểm tra tài khoản có khớp Tên đăng nhập, SĐT và Email không (dùng khi quên mật khẩu)
+        public static bool KiemTraNguoiDung(string ten, string sdt, string email)
+        {
+            using var conn = new SqlConnection(ChuoiKetNoi);
+            const string sql = @"SELECT COUNT(*) FROM Users
+                                 WHERE TenDangNhap = @ten AND SoDienThoai = @sdt AND Email = @email";
+            using var cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
+            cmd.Parameters.Add("@sdt", SqlDbType.VarChar, 10).Value = sdt;
+            cmd.Parameters.Add("@email", SqlDbType.NVarChar, 100).Value = email;
+
+            try
+            {
+                conn.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi kết nối (Kiểm tra người dùng): " + ex.Message, ex);
+            }
+        }
+
+        // 5. Lưu mã OTP vào CSDL, có hiệu lực trong 5 phút
+        public static void LuuMaOTP(string ten, string maOTP)
+        {
+            using var conn = new SqlConnection(ChuoiKetNoi);
+            const string sql = @"UPDATE Users
+                                 SET MaOTP = @otp, ThoiGianHetHanOTP = DATEADD(MINUTE, 5, SYSDATETIME())
+                                 WHERE TenDangNhap = @ten";
+            using var cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.Add("@otp", SqlDbType.VarChar, 6).Value = maOTP;
+            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi kết nối (Gửi OTP): " + ex.Message, ex);
+            }
+        }
+
+        // 6. Kiểm tra mã OTP nhập vào có đúng và còn hiệu lực không
+        public static bool KiemTraMaOTP(string ten, string maOTP)
+        {
+            using var conn = new SqlConnection(ChuoiKetNoi);
+            const string sql = @"SELECT COUNT(*) FROM Users
+                                 WHERE TenDangNhap = @ten AND MaOTP = @otp
+                                       AND ThoiGianHetHanOTP > SYSDATETIME()";
+            using var cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
+            cmd.Parameters.Add("@otp", SqlDbType.VarChar, 6).Value = maOTP;
+
+            try
+            {
+                conn.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi kết nối (Kiểm tra OTP): " + ex.Message, ex);
+            }
+        }
+
+        // 7. Đặt lại mật khẩu mới và xóa OTP đã dùng
+        public static bool DatLaiMatKhau(string ten, string matKhauMoi)
+        {
+            var (salt, bam) = MatKhau.Tao(matKhauMoi);
+
+            using var conn = new SqlConnection(ChuoiKetNoi);
+            const string sql = @"UPDATE Users
+                                 SET MatKhauBam = @bam, Salt = @salt,
+                                     MaOTP = NULL, ThoiGianHetHanOTP = NULL
+                                 WHERE TenDangNhap = @ten";
+            using var cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.Add("@bam", SqlDbType.NVarChar, 64).Value = bam;
+            cmd.Parameters.Add("@salt", SqlDbType.NVarChar, 32).Value = salt;
+            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
+
+            try
+            {
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi kết nối (Đặt lại mật khẩu): " + ex.Message, ex);
             }
         }
     }
