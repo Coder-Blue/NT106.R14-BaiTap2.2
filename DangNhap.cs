@@ -69,7 +69,6 @@ public partial class DangNhap : Form
         using var formDangKy = new DangKy();
         formDangKy.ShowDialog();
 
-        // Điền sẵn tên đăng nhập vừa tạo để người dùng đăng nhập ngay.
         if (formDangKy.TenDangNhapDaDangKy is { Length: > 0 } tenDangNhap)
         {
             txtTenDangNhap.Text = tenDangNhap;

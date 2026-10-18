@@ -1,4 +1,4 @@
-﻿namespace CRUD_APP
+namespace CRUD_APP
 {
     partial class DangNhap
     {
@@ -58,7 +58,6 @@
             lblTenDangNhap.Font = new Font("Segoe UI", 10F);
             lblTenDangNhap.Location = new Point(44, 108);
             lblTenDangNhap.Name = "lblTenDangNhap";
-            lblTenDangNhap.Size = new Size(0, 19);
             lblTenDangNhap.TabIndex = 2;
             lblTenDangNhap.Text = "Tên đăng nhập";
             // 
@@ -77,7 +76,6 @@
             lblMatKhau.Font = new Font("Segoe UI", 10F);
             lblMatKhau.Location = new Point(44, 176);
             lblMatKhau.Name = "lblMatKhau";
-            lblMatKhau.Size = new Size(0, 19);
             lblMatKhau.TabIndex = 4;
             lblMatKhau.Text = "Mật khẩu";
             // 

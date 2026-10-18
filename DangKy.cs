@@ -1,4 +1,4 @@
-﻿namespace CRUD_APP;
+namespace CRUD_APP;
 
 public partial class DangKy : Form
 {
@@ -19,7 +19,6 @@ public partial class DangKy : Form
         {
             var tenDangNhap = txtTenDangNhap.Text.Trim();
 
-            // Ngăn trùng tên đăng nhập ở mức chương trình trước khi thêm bản ghi.
             if (await XuLyNguoiDung.KiemTraTenDangNhapTonTai(tenDangNhap))
             {
                 lblLoiTenDangNhap.Text = "Tên này đã có người dùng.";

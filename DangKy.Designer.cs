@@ -1,4 +1,4 @@
-﻿namespace CRUD_APP
+namespace CRUD_APP
 {
     partial class DangKy
     {
@@ -67,7 +67,6 @@
             lblTenDangNhap.Font = new Font("Segoe UI", 10F);
             lblTenDangNhap.Location = new Point(48, 100);
             lblTenDangNhap.Name = "lblTenDangNhap";
-            lblTenDangNhap.Size = new Size(0, 19);
             lblTenDangNhap.TabIndex = 2;
             lblTenDangNhap.Text = "Tên đăng nhập";
             // 
@@ -96,7 +95,6 @@
             lblMatKhau.Font = new Font("Segoe UI", 10F);
             lblMatKhau.Location = new Point(48, 178);
             lblMatKhau.Name = "lblMatKhau";
-            lblMatKhau.Size = new Size(0, 19);
             lblMatKhau.TabIndex = 5;
             lblMatKhau.Text = "Mật khẩu";
             // 
@@ -126,7 +124,6 @@
             lblXacNhanMatKhau.Font = new Font("Segoe UI", 10F);
             lblXacNhanMatKhau.Location = new Point(48, 256);
             lblXacNhanMatKhau.Name = "lblXacNhanMatKhau";
-            lblXacNhanMatKhau.Size = new Size(0, 19);
             lblXacNhanMatKhau.TabIndex = 8;
             lblXacNhanMatKhau.Text = "Xác nhận mật khẩu";
             // 
@@ -156,7 +153,6 @@
             lblHoTen.Font = new Font("Segoe UI", 10F);
             lblHoTen.Location = new Point(48, 334);
             lblHoTen.Name = "lblHoTen";
-            lblHoTen.Size = new Size(0, 19);
             lblHoTen.TabIndex = 11;
             lblHoTen.Text = "Họ tên";
             // 
@@ -185,7 +181,6 @@
             lblEmail.Font = new Font("Segoe UI", 10F);
             lblEmail.Location = new Point(48, 412);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(0, 19);
             lblEmail.TabIndex = 14;
             lblEmail.Text = "Email (không bắt buộc)";
             // 

@@ -82,7 +82,6 @@ namespace CRUD_APP
             lblTenDangNhapLabel.ForeColor = Color.FromArgb(110, 110, 110);
             lblTenDangNhapLabel.Location = new Point(20, 40);
             lblTenDangNhapLabel.Name = "lblTenDangNhapLabel";
-            lblTenDangNhapLabel.Size = new Size(0, 19);
             lblTenDangNhapLabel.TabIndex = 0;
             lblTenDangNhapLabel.Text = "Tên đăng nhập:";
             // 
@@ -92,7 +91,6 @@ namespace CRUD_APP
             lblTenDangNhap.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTenDangNhap.Location = new Point(200, 40);
             lblTenDangNhap.Name = "lblTenDangNhap";
-            lblTenDangNhap.Size = new Size(0, 19);
             lblTenDangNhap.TabIndex = 1;
             // 
             // lblHoTenLabel
@@ -101,7 +99,6 @@ namespace CRUD_APP
             lblHoTenLabel.ForeColor = Color.FromArgb(110, 110, 110);
             lblHoTenLabel.Location = new Point(20, 74);
             lblHoTenLabel.Name = "lblHoTenLabel";
-            lblHoTenLabel.Size = new Size(0, 19);
             lblHoTenLabel.TabIndex = 2;
             lblHoTenLabel.Text = "Họ tên:";
             // 
@@ -111,7 +108,6 @@ namespace CRUD_APP
             lblHoTen.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblHoTen.Location = new Point(200, 74);
             lblHoTen.Name = "lblHoTen";
-            lblHoTen.Size = new Size(0, 19);
             lblHoTen.TabIndex = 3;
             // 
             // lblEmailLabel
@@ -120,7 +116,6 @@ namespace CRUD_APP
             lblEmailLabel.ForeColor = Color.FromArgb(110, 110, 110);
             lblEmailLabel.Location = new Point(20, 108);
             lblEmailLabel.Name = "lblEmailLabel";
-            lblEmailLabel.Size = new Size(0, 19);
             lblEmailLabel.TabIndex = 4;
             lblEmailLabel.Text = "Email:";
             // 
@@ -130,7 +125,6 @@ namespace CRUD_APP
             lblEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblEmail.Location = new Point(200, 108);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(0, 19);
             lblEmail.TabIndex = 5;
             // 
             // lblNgayTaoLabel
@@ -139,7 +133,6 @@ namespace CRUD_APP
             lblNgayTaoLabel.ForeColor = Color.FromArgb(110, 110, 110);
             lblNgayTaoLabel.Location = new Point(20, 142);
             lblNgayTaoLabel.Name = "lblNgayTaoLabel";
-            lblNgayTaoLabel.Size = new Size(0, 19);
             lblNgayTaoLabel.TabIndex = 6;
             lblNgayTaoLabel.Text = "Ngày tạo:";
             // 
@@ -149,7 +142,6 @@ namespace CRUD_APP
             lblNgayTao.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblNgayTao.Location = new Point(200, 142);
             lblNgayTao.Name = "lblNgayTao";
-            lblNgayTao.Size = new Size(0, 19);
             lblNgayTao.TabIndex = 7;
             // 
             // lblLanDangNhapCuoiLabel
@@ -158,7 +150,6 @@ namespace CRUD_APP
             lblLanDangNhapCuoiLabel.ForeColor = Color.FromArgb(110, 110, 110);
             lblLanDangNhapCuoiLabel.Location = new Point(20, 176);
             lblLanDangNhapCuoiLabel.Name = "lblLanDangNhapCuoiLabel";
-            lblLanDangNhapCuoiLabel.Size = new Size(0, 19);
             lblLanDangNhapCuoiLabel.TabIndex = 8;
             lblLanDangNhapCuoiLabel.Text = "Lần đăng nhập trước:";
             // 
@@ -168,7 +159,6 @@ namespace CRUD_APP
             lblLanDangNhapCuoi.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblLanDangNhapCuoi.Location = new Point(200, 176);
             lblLanDangNhapCuoi.Name = "lblLanDangNhapCuoi";
-            lblLanDangNhapCuoi.Size = new Size(0, 19);
             lblLanDangNhapCuoi.TabIndex = 9;
             // 
             // btnDangXuat
