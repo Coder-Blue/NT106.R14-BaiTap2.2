@@ -2,18 +2,11 @@ namespace CRUD_APP
 {
     partial class FormChinh
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && components != null)
             {
                 components.Dispose();
             }
@@ -22,14 +15,11 @@ namespace CRUD_APP
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             lblTieuDe = new Label();
             lblChaoMung = new Label();
+            grpThongTin = new GroupBox();
             lblTenDangNhapLabel = new Label();
             lblTenDangNhap = new Label();
             lblHoTenLabel = new Label();
@@ -41,158 +31,183 @@ namespace CRUD_APP
             lblLanDangNhapCuoiLabel = new Label();
             lblLanDangNhapCuoi = new Label();
             btnDangXuat = new Button();
+            grpThongTin.SuspendLayout();
             SuspendLayout();
             // 
             // lblTieuDe
             // 
-            lblTieuDe.AutoSize = true;
-            lblTieuDe.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTieuDe.Location = new Point(150, 20);
+            lblTieuDe.AutoSize = false;
+            lblTieuDe.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTieuDe.Location = new Point(0, 24);
             lblTieuDe.Name = "lblTieuDe";
-            lblTieuDe.Size = new Size(190, 32);
+            lblTieuDe.Size = new Size(520, 32);
             lblTieuDe.TabIndex = 0;
             lblTieuDe.Text = "TRANG CHÍNH";
+            lblTieuDe.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblChaoMung
             // 
-            lblChaoMung.AutoSize = true;
-            lblChaoMung.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblChaoMung.Location = new Point(40, 70);
+            lblChaoMung.AutoSize = false;
+            lblChaoMung.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblChaoMung.Location = new Point(48, 72);
             lblChaoMung.Name = "lblChaoMung";
-            lblChaoMung.Size = new Size(200, 25);
+            lblChaoMung.Size = new Size(424, 26);
             lblChaoMung.TabIndex = 1;
-            lblChaoMung.Text = "Xin chào,";
+            lblChaoMung.Text = "Xin chào!";
+            // 
+            // grpThongTin
+            // 
+            grpThongTin.Controls.Add(lblTenDangNhapLabel);
+            grpThongTin.Controls.Add(lblTenDangNhap);
+            grpThongTin.Controls.Add(lblHoTenLabel);
+            grpThongTin.Controls.Add(lblHoTen);
+            grpThongTin.Controls.Add(lblEmailLabel);
+            grpThongTin.Controls.Add(lblEmail);
+            grpThongTin.Controls.Add(lblNgayTaoLabel);
+            grpThongTin.Controls.Add(lblNgayTao);
+            grpThongTin.Controls.Add(lblLanDangNhapCuoiLabel);
+            grpThongTin.Controls.Add(lblLanDangNhapCuoi);
+            grpThongTin.Font = new Font("Segoe UI", 10F);
+            grpThongTin.ForeColor = Color.FromArgb(50, 50, 50);
+            grpThongTin.Location = new Point(48, 110);
+            grpThongTin.Name = "grpThongTin";
+            grpThongTin.Size = new Size(424, 224);
+            grpThongTin.TabIndex = 2;
+            grpThongTin.TabStop = false;
+            grpThongTin.Text = "Thông tin tài khoản";
             // 
             // lblTenDangNhapLabel
             // 
             lblTenDangNhapLabel.AutoSize = true;
-            lblTenDangNhapLabel.Font = new Font("Segoe UI", 12F);
-            lblTenDangNhapLabel.Location = new Point(40, 115);
+            lblTenDangNhapLabel.ForeColor = Color.FromArgb(110, 110, 110);
+            lblTenDangNhapLabel.Location = new Point(20, 40);
             lblTenDangNhapLabel.Name = "lblTenDangNhapLabel";
-            lblTenDangNhapLabel.Size = new Size(120, 21);
-            lblTenDangNhapLabel.TabIndex = 2;
+            lblTenDangNhapLabel.Size = new Size(0, 19);
+            lblTenDangNhapLabel.TabIndex = 0;
             lblTenDangNhapLabel.Text = "Tên đăng nhập:";
             // 
             // lblTenDangNhap
             // 
             lblTenDangNhap.AutoSize = true;
-            lblTenDangNhap.Font = new Font("Segoe UI", 12F);
-            lblTenDangNhap.Location = new Point(200, 115);
+            lblTenDangNhap.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblTenDangNhap.Location = new Point(200, 40);
             lblTenDangNhap.Name = "lblTenDangNhap";
-            lblTenDangNhap.Size = new Size(0, 21);
-            lblTenDangNhap.TabIndex = 3;
+            lblTenDangNhap.Size = new Size(0, 19);
+            lblTenDangNhap.TabIndex = 1;
             // 
             // lblHoTenLabel
             // 
             lblHoTenLabel.AutoSize = true;
-            lblHoTenLabel.Font = new Font("Segoe UI", 12F);
-            lblHoTenLabel.Location = new Point(40, 145);
+            lblHoTenLabel.ForeColor = Color.FromArgb(110, 110, 110);
+            lblHoTenLabel.Location = new Point(20, 74);
             lblHoTenLabel.Name = "lblHoTenLabel";
-            lblHoTenLabel.Size = new Size(62, 21);
-            lblHoTenLabel.TabIndex = 4;
+            lblHoTenLabel.Size = new Size(0, 19);
+            lblHoTenLabel.TabIndex = 2;
             lblHoTenLabel.Text = "Họ tên:";
             // 
             // lblHoTen
             // 
             lblHoTen.AutoSize = true;
-            lblHoTen.Font = new Font("Segoe UI", 12F);
-            lblHoTen.Location = new Point(200, 145);
+            lblHoTen.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblHoTen.Location = new Point(200, 74);
             lblHoTen.Name = "lblHoTen";
-            lblHoTen.Size = new Size(0, 21);
-            lblHoTen.TabIndex = 5;
+            lblHoTen.Size = new Size(0, 19);
+            lblHoTen.TabIndex = 3;
             // 
             // lblEmailLabel
             // 
             lblEmailLabel.AutoSize = true;
-            lblEmailLabel.Font = new Font("Segoe UI", 12F);
-            lblEmailLabel.Location = new Point(40, 175);
+            lblEmailLabel.ForeColor = Color.FromArgb(110, 110, 110);
+            lblEmailLabel.Location = new Point(20, 108);
             lblEmailLabel.Name = "lblEmailLabel";
-            lblEmailLabel.Size = new Size(55, 21);
-            lblEmailLabel.TabIndex = 6;
+            lblEmailLabel.Size = new Size(0, 19);
+            lblEmailLabel.TabIndex = 4;
             lblEmailLabel.Text = "Email:";
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Segoe UI", 12F);
-            lblEmail.Location = new Point(200, 175);
+            lblEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblEmail.Location = new Point(200, 108);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(0, 21);
-            lblEmail.TabIndex = 7;
+            lblEmail.Size = new Size(0, 19);
+            lblEmail.TabIndex = 5;
             // 
             // lblNgayTaoLabel
             // 
             lblNgayTaoLabel.AutoSize = true;
-            lblNgayTaoLabel.Font = new Font("Segoe UI", 12F);
-            lblNgayTaoLabel.Location = new Point(40, 205);
+            lblNgayTaoLabel.ForeColor = Color.FromArgb(110, 110, 110);
+            lblNgayTaoLabel.Location = new Point(20, 142);
             lblNgayTaoLabel.Name = "lblNgayTaoLabel";
-            lblNgayTaoLabel.Size = new Size(80, 21);
-            lblNgayTaoLabel.TabIndex = 8;
+            lblNgayTaoLabel.Size = new Size(0, 19);
+            lblNgayTaoLabel.TabIndex = 6;
             lblNgayTaoLabel.Text = "Ngày tạo:";
             // 
             // lblNgayTao
             // 
             lblNgayTao.AutoSize = true;
-            lblNgayTao.Font = new Font("Segoe UI", 12F);
-            lblNgayTao.Location = new Point(200, 205);
+            lblNgayTao.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblNgayTao.Location = new Point(200, 142);
             lblNgayTao.Name = "lblNgayTao";
-            lblNgayTao.Size = new Size(0, 21);
-            lblNgayTao.TabIndex = 9;
+            lblNgayTao.Size = new Size(0, 19);
+            lblNgayTao.TabIndex = 7;
             // 
             // lblLanDangNhapCuoiLabel
             // 
             lblLanDangNhapCuoiLabel.AutoSize = true;
-            lblLanDangNhapCuoiLabel.Font = new Font("Segoe UI", 12F);
-            lblLanDangNhapCuoiLabel.Location = new Point(40, 235);
+            lblLanDangNhapCuoiLabel.ForeColor = Color.FromArgb(110, 110, 110);
+            lblLanDangNhapCuoiLabel.Location = new Point(20, 176);
             lblLanDangNhapCuoiLabel.Name = "lblLanDangNhapCuoiLabel";
-            lblLanDangNhapCuoiLabel.Size = new Size(185, 21);
-            lblLanDangNhapCuoiLabel.TabIndex = 10;
-            lblLanDangNhapCuoiLabel.Text = "Lần đăng nhập gần nhất:";
+            lblLanDangNhapCuoiLabel.Size = new Size(0, 19);
+            lblLanDangNhapCuoiLabel.TabIndex = 8;
+            lblLanDangNhapCuoiLabel.Text = "Lần đăng nhập trước:";
             // 
             // lblLanDangNhapCuoi
             // 
             lblLanDangNhapCuoi.AutoSize = true;
-            lblLanDangNhapCuoi.Font = new Font("Segoe UI", 12F);
-            lblLanDangNhapCuoi.Location = new Point(240, 235);
+            lblLanDangNhapCuoi.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblLanDangNhapCuoi.Location = new Point(200, 176);
             lblLanDangNhapCuoi.Name = "lblLanDangNhapCuoi";
-            lblLanDangNhapCuoi.Size = new Size(0, 21);
-            lblLanDangNhapCuoi.TabIndex = 11;
+            lblLanDangNhapCuoi.Size = new Size(0, 19);
+            lblLanDangNhapCuoi.TabIndex = 9;
             // 
             // btnDangXuat
             // 
-            btnDangXuat.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnDangXuat.Location = new Point(165, 285);
+            btnDangXuat.BackColor = Color.FromArgb(51, 122, 183);
+            btnDangXuat.Cursor = Cursors.Hand;
+            btnDangXuat.FlatAppearance.BorderSize = 0;
+            btnDangXuat.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 96, 145);
+            btnDangXuat.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 138, 204);
+            btnDangXuat.FlatStyle = FlatStyle.Flat;
+            btnDangXuat.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            btnDangXuat.ForeColor = Color.White;
+            btnDangXuat.Location = new Point(180, 356);
             btnDangXuat.Name = "btnDangXuat";
-            btnDangXuat.Size = new Size(140, 40);
-            btnDangXuat.TabIndex = 12;
+            btnDangXuat.Size = new Size(160, 40);
+            btnDangXuat.TabIndex = 3;
             btnDangXuat.Text = "Đăng xuất";
-            btnDangXuat.UseVisualStyleBackColor = true;
+            btnDangXuat.UseVisualStyleBackColor = false;
             btnDangXuat.Click += btnDangXuat_Click;
             // 
             // FormChinh
             // 
+            AcceptButton = btnDangXuat;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(480, 360);
+            BackColor = Color.White;
+            ClientSize = new Size(520, 420);
             Controls.Add(lblTieuDe);
             Controls.Add(lblChaoMung);
-            Controls.Add(lblTenDangNhapLabel);
-            Controls.Add(lblTenDangNhap);
-            Controls.Add(lblHoTenLabel);
-            Controls.Add(lblHoTen);
-            Controls.Add(lblEmailLabel);
-            Controls.Add(lblEmail);
-            Controls.Add(lblNgayTaoLabel);
-            Controls.Add(lblNgayTao);
-            Controls.Add(lblLanDangNhapCuoiLabel);
-            Controls.Add(lblLanDangNhapCuoi);
+            Controls.Add(grpThongTin);
             Controls.Add(btnDangXuat);
-            AcceptButton = btnDangXuat;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FormChinh";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Trang chính";
+            grpThongTin.ResumeLayout(false);
+            grpThongTin.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -201,6 +216,7 @@ namespace CRUD_APP
 
         private Label lblTieuDe;
         private Label lblChaoMung;
+        private GroupBox grpThongTin;
         private Label lblTenDangNhapLabel;
         private Label lblTenDangNhap;
         private Label lblHoTenLabel;
