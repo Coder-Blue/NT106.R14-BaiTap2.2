@@ -1,19 +1,12 @@
-﻿namespace CRUD_APP
+namespace CRUD_APP
 {
     partial class DangKy
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && components != null)
             {
                 components.Dispose();
             }
@@ -22,13 +15,10 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             lblTieuDe = new Label();
+            lblPhuDe = new Label();
             lblTenDangNhap = new Label();
             txtTenDangNhap = new TextBox();
             lblLoiTenDangNhap = new Label();
@@ -50,184 +40,215 @@
             // 
             // lblTieuDe
             // 
-            lblTieuDe.AutoSize = true;
-            lblTieuDe.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTieuDe.Location = new Point(110, 20);
+            lblTieuDe.AutoSize = false;
+            lblTieuDe.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTieuDe.Location = new Point(0, 24);
             lblTieuDe.Name = "lblTieuDe";
-            lblTieuDe.Size = new Size(240, 32);
+            lblTieuDe.Size = new Size(520, 32);
             lblTieuDe.TabIndex = 0;
             lblTieuDe.Text = "ĐĂNG KÝ TÀI KHOẢN";
+            lblTieuDe.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblPhuDe
+            // 
+            lblPhuDe.AutoSize = false;
+            lblPhuDe.Font = new Font("Segoe UI", 9F);
+            lblPhuDe.ForeColor = Color.FromArgb(110, 110, 110);
+            lblPhuDe.Location = new Point(0, 58);
+            lblPhuDe.Name = "lblPhuDe";
+            lblPhuDe.Size = new Size(520, 20);
+            lblPhuDe.TabIndex = 1;
+            lblPhuDe.Text = "Tạo tài khoản mới để sử dụng hệ thống";
+            lblPhuDe.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblTenDangNhap
             // 
             lblTenDangNhap.AutoSize = true;
-            lblTenDangNhap.Font = new Font("Segoe UI", 12F);
-            lblTenDangNhap.Location = new Point(30, 80);
+            lblTenDangNhap.Font = new Font("Segoe UI", 10F);
+            lblTenDangNhap.Location = new Point(48, 100);
             lblTenDangNhap.Name = "lblTenDangNhap";
-            lblTenDangNhap.Size = new Size(110, 21);
-            lblTenDangNhap.TabIndex = 1;
+            lblTenDangNhap.TabIndex = 2;
             lblTenDangNhap.Text = "Tên đăng nhập";
             // 
             // txtTenDangNhap
             // 
-            txtTenDangNhap.Font = new Font("Segoe UI", 12F);
-            txtTenDangNhap.Location = new Point(185, 77);
+            txtTenDangNhap.Font = new Font("Segoe UI", 11F);
+            txtTenDangNhap.Location = new Point(48, 122);
             txtTenDangNhap.Name = "txtTenDangNhap";
-            txtTenDangNhap.PlaceholderText = "3-20 ký tự";
-            txtTenDangNhap.Size = new Size(250, 29);
-            txtTenDangNhap.TabIndex = 0;
+            txtTenDangNhap.PlaceholderText = "Từ 3 đến 20 ký tự";
+            txtTenDangNhap.Size = new Size(424, 27);
+            txtTenDangNhap.TabIndex = 3;
             // 
             // lblLoiTenDangNhap
             // 
-            lblLoiTenDangNhap.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
-            lblLoiTenDangNhap.ForeColor = Color.Red;
-            lblLoiTenDangNhap.Location = new Point(185, 108);
+            lblLoiTenDangNhap.AutoSize = false;
+            lblLoiTenDangNhap.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic);
+            lblLoiTenDangNhap.ForeColor = Color.FromArgb(192, 40, 40);
+            lblLoiTenDangNhap.Location = new Point(48, 152);
             lblLoiTenDangNhap.Name = "lblLoiTenDangNhap";
-            lblLoiTenDangNhap.Size = new Size(250, 18);
-            lblLoiTenDangNhap.TabIndex = 2;
+            lblLoiTenDangNhap.Size = new Size(424, 18);
+            lblLoiTenDangNhap.TabIndex = 4;
             // 
             // lblMatKhau
             // 
             lblMatKhau.AutoSize = true;
-            lblMatKhau.Font = new Font("Segoe UI", 12F);
-            lblMatKhau.Location = new Point(30, 135);
+            lblMatKhau.Font = new Font("Segoe UI", 10F);
+            lblMatKhau.Location = new Point(48, 178);
             lblMatKhau.Name = "lblMatKhau";
-            lblMatKhau.Size = new Size(75, 21);
-            lblMatKhau.TabIndex = 3;
+            lblMatKhau.TabIndex = 5;
             lblMatKhau.Text = "Mật khẩu";
             // 
             // txtMatKhau
             // 
-            txtMatKhau.Font = new Font("Segoe UI", 12F);
-            txtMatKhau.Location = new Point(185, 132);
+            txtMatKhau.Font = new Font("Segoe UI", 11F);
+            txtMatKhau.Location = new Point(48, 200);
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.PasswordChar = '●';
-            txtMatKhau.PlaceholderText = "tối thiểu 6 ký tự";
-            txtMatKhau.Size = new Size(250, 29);
-            txtMatKhau.TabIndex = 1;
+            txtMatKhau.PlaceholderText = "Tối thiểu 6 ký tự";
+            txtMatKhau.Size = new Size(424, 27);
+            txtMatKhau.TabIndex = 6;
             // 
             // lblLoiMatKhau
             // 
-            lblLoiMatKhau.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
-            lblLoiMatKhau.ForeColor = Color.Red;
-            lblLoiMatKhau.Location = new Point(185, 163);
+            lblLoiMatKhau.AutoSize = false;
+            lblLoiMatKhau.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic);
+            lblLoiMatKhau.ForeColor = Color.FromArgb(192, 40, 40);
+            lblLoiMatKhau.Location = new Point(48, 230);
             lblLoiMatKhau.Name = "lblLoiMatKhau";
-            lblLoiMatKhau.Size = new Size(250, 18);
-            lblLoiMatKhau.TabIndex = 4;
+            lblLoiMatKhau.Size = new Size(424, 18);
+            lblLoiMatKhau.TabIndex = 7;
             // 
             // lblXacNhanMatKhau
             // 
             lblXacNhanMatKhau.AutoSize = true;
-            lblXacNhanMatKhau.Font = new Font("Segoe UI", 12F);
-            lblXacNhanMatKhau.Location = new Point(30, 190);
+            lblXacNhanMatKhau.Font = new Font("Segoe UI", 10F);
+            lblXacNhanMatKhau.Location = new Point(48, 256);
             lblXacNhanMatKhau.Name = "lblXacNhanMatKhau";
-            lblXacNhanMatKhau.Size = new Size(150, 21);
-            lblXacNhanMatKhau.TabIndex = 5;
+            lblXacNhanMatKhau.TabIndex = 8;
             lblXacNhanMatKhau.Text = "Xác nhận mật khẩu";
             // 
             // txtXacNhanMatKhau
             // 
-            txtXacNhanMatKhau.Font = new Font("Segoe UI", 12F);
-            txtXacNhanMatKhau.Location = new Point(185, 187);
+            txtXacNhanMatKhau.Font = new Font("Segoe UI", 11F);
+            txtXacNhanMatKhau.Location = new Point(48, 278);
             txtXacNhanMatKhau.Name = "txtXacNhanMatKhau";
             txtXacNhanMatKhau.PasswordChar = '●';
-            txtXacNhanMatKhau.PlaceholderText = "nhập lại mật khẩu";
-            txtXacNhanMatKhau.Size = new Size(250, 29);
-            txtXacNhanMatKhau.TabIndex = 2;
+            txtXacNhanMatKhau.PlaceholderText = "Nhập lại mật khẩu";
+            txtXacNhanMatKhau.Size = new Size(424, 27);
+            txtXacNhanMatKhau.TabIndex = 9;
             // 
             // lblLoiXacNhanMatKhau
             // 
-            lblLoiXacNhanMatKhau.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
-            lblLoiXacNhanMatKhau.ForeColor = Color.Red;
-            lblLoiXacNhanMatKhau.Location = new Point(185, 218);
+            lblLoiXacNhanMatKhau.AutoSize = false;
+            lblLoiXacNhanMatKhau.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic);
+            lblLoiXacNhanMatKhau.ForeColor = Color.FromArgb(192, 40, 40);
+            lblLoiXacNhanMatKhau.Location = new Point(48, 308);
             lblLoiXacNhanMatKhau.Name = "lblLoiXacNhanMatKhau";
-            lblLoiXacNhanMatKhau.Size = new Size(250, 18);
-            lblLoiXacNhanMatKhau.TabIndex = 6;
+            lblLoiXacNhanMatKhau.Size = new Size(424, 18);
+            lblLoiXacNhanMatKhau.TabIndex = 10;
             // 
             // lblHoTen
             // 
             lblHoTen.AutoSize = true;
-            lblHoTen.Font = new Font("Segoe UI", 12F);
-            lblHoTen.Location = new Point(30, 245);
+            lblHoTen.Font = new Font("Segoe UI", 10F);
+            lblHoTen.Location = new Point(48, 334);
             lblHoTen.Name = "lblHoTen";
-            lblHoTen.Size = new Size(55, 21);
-            lblHoTen.TabIndex = 7;
+            lblHoTen.TabIndex = 11;
             lblHoTen.Text = "Họ tên";
             // 
             // txtHoTen
             // 
-            txtHoTen.Font = new Font("Segoe UI", 12F);
-            txtHoTen.Location = new Point(185, 242);
+            txtHoTen.Font = new Font("Segoe UI", 11F);
+            txtHoTen.Location = new Point(48, 356);
             txtHoTen.Name = "txtHoTen";
-            txtHoTen.PlaceholderText = "tối đa 50 ký tự";
-            txtHoTen.Size = new Size(250, 29);
-            txtHoTen.TabIndex = 3;
+            txtHoTen.PlaceholderText = "Tối đa 50 ký tự";
+            txtHoTen.Size = new Size(424, 27);
+            txtHoTen.TabIndex = 12;
             // 
             // lblLoiHoTen
             // 
-            lblLoiHoTen.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
-            lblLoiHoTen.ForeColor = Color.Red;
-            lblLoiHoTen.Location = new Point(185, 273);
+            lblLoiHoTen.AutoSize = false;
+            lblLoiHoTen.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic);
+            lblLoiHoTen.ForeColor = Color.FromArgb(192, 40, 40);
+            lblLoiHoTen.Location = new Point(48, 386);
             lblLoiHoTen.Name = "lblLoiHoTen";
-            lblLoiHoTen.Size = new Size(250, 18);
-            lblLoiHoTen.TabIndex = 8;
+            lblLoiHoTen.Size = new Size(424, 18);
+            lblLoiHoTen.TabIndex = 13;
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Segoe UI", 12F);
-            lblEmail.Location = new Point(30, 300);
+            lblEmail.Font = new Font("Segoe UI", 10F);
+            lblEmail.Location = new Point(48, 412);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(48, 21);
-            lblEmail.TabIndex = 9;
-            lblEmail.Text = "Email";
+            lblEmail.TabIndex = 14;
+            lblEmail.Text = "Email (không bắt buộc)";
             // 
             // txtEmail
             // 
-            txtEmail.Font = new Font("Segoe UI", 12F);
-            txtEmail.Location = new Point(185, 297);
+            txtEmail.Font = new Font("Segoe UI", 11F);
+            txtEmail.Location = new Point(48, 434);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "ten@mien.com";
-            txtEmail.Size = new Size(250, 29);
-            txtEmail.TabIndex = 4;
+            txtEmail.Size = new Size(424, 27);
+            txtEmail.TabIndex = 15;
             // 
             // lblLoiEmail
             // 
-            lblLoiEmail.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
-            lblLoiEmail.ForeColor = Color.Red;
-            lblLoiEmail.Location = new Point(185, 328);
+            lblLoiEmail.AutoSize = false;
+            lblLoiEmail.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic);
+            lblLoiEmail.ForeColor = Color.FromArgb(192, 40, 40);
+            lblLoiEmail.Location = new Point(48, 464);
             lblLoiEmail.Name = "lblLoiEmail";
-            lblLoiEmail.Size = new Size(250, 18);
-            lblLoiEmail.TabIndex = 10;
+            lblLoiEmail.Size = new Size(424, 18);
+            lblLoiEmail.TabIndex = 16;
             // 
             // btnDangKy
             // 
-            btnDangKy.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnDangKy.Location = new Point(80, 375);
+            btnDangKy.BackColor = Color.FromArgb(51, 122, 183);
+            btnDangKy.Cursor = Cursors.Hand;
+            btnDangKy.FlatAppearance.BorderSize = 0;
+            btnDangKy.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 96, 145);
+            btnDangKy.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 138, 204);
+            btnDangKy.FlatStyle = FlatStyle.Flat;
+            btnDangKy.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            btnDangKy.ForeColor = Color.White;
+            btnDangKy.Location = new Point(48, 502);
             btnDangKy.Name = "btnDangKy";
-            btnDangKy.Size = new Size(140, 40);
-            btnDangKy.TabIndex = 5;
+            btnDangKy.Size = new Size(200, 40);
+            btnDangKy.TabIndex = 17;
             btnDangKy.Text = "Đăng ký";
-            btnDangKy.UseVisualStyleBackColor = true;
+            btnDangKy.UseVisualStyleBackColor = false;
             btnDangKy.Click += btnDangKy_Click;
             // 
             // btnHuy
             // 
-            btnHuy.Font = new Font("Segoe UI", 12F);
-            btnHuy.Location = new Point(250, 375);
+            btnHuy.BackColor = Color.White;
+            btnHuy.Cursor = Cursors.Hand;
+            btnHuy.FlatAppearance.BorderColor = Color.FromArgb(200, 200, 200);
+            btnHuy.FlatAppearance.MouseDownBackColor = Color.FromArgb(225, 225, 225);
+            btnHuy.FlatAppearance.MouseOverBackColor = Color.FromArgb(245, 245, 245);
+            btnHuy.FlatStyle = FlatStyle.Flat;
+            btnHuy.Font = new Font("Segoe UI", 10.5F);
+            btnHuy.ForeColor = Color.FromArgb(64, 64, 64);
+            btnHuy.Location = new Point(272, 502);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(140, 40);
-            btnHuy.TabIndex = 6;
+            btnHuy.Size = new Size(200, 40);
+            btnHuy.TabIndex = 18;
             btnHuy.Text = "Huỷ";
-            btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.UseVisualStyleBackColor = false;
             btnHuy.Click += btnHuy_Click;
             // 
             // DangKy
             // 
+            AcceptButton = btnDangKy;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(480, 440);
+            BackColor = Color.White;
+            CancelButton = btnHuy;
+            ClientSize = new Size(520, 560);
             Controls.Add(lblTieuDe);
+            Controls.Add(lblPhuDe);
             Controls.Add(lblTenDangNhap);
             Controls.Add(txtTenDangNhap);
             Controls.Add(lblLoiTenDangNhap);
@@ -245,10 +266,9 @@
             Controls.Add(lblLoiEmail);
             Controls.Add(btnDangKy);
             Controls.Add(btnHuy);
-            AcceptButton = btnDangKy;
-            CancelButton = btnHuy;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "DangKy";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Đăng ký tài khoản";
@@ -259,6 +279,7 @@
         #endregion
 
         private Label lblTieuDe;
+        private Label lblPhuDe;
         private Label lblTenDangNhap;
         private TextBox txtTenDangNhap;
         private Label lblLoiTenDangNhap;
