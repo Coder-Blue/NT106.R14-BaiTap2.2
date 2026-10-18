@@ -1,176 +1,119 @@
 ﻿using System;
 using System.Data;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
 namespace CRUD_APP
 {
+    // Lớp truy cập cơ sở dữ liệu: mọi câu lệnh SQL đều nằm ở đây,
+    // không viết trực tiếp trong hàm xử lý sự kiện của form.
     public static class XuLyNguoiDung
     {
-        // Chuỗi kết nối SQL Server (đổi lại tên Server cho đúng với máy của bạn nếu cần).
-        private const string ChuoiKetNoi = @"Server=.;Database=QuanLyNguoiDung;Trusted_Connection=True;TrustServerCertificate=True;";
+        // Chuỗi kết nối SQL Server. Đổi lại tên instance cho đúng với máy của bạn nếu cần.
+        private const string ChuoiKetNoi =
+            @"Server=localhost\SQLEXPRESS;Database=QuanLyNguoiDung;Trusted_Connection=True;TrustServerCertificate=True;";
 
-        // 1. Hàm xử lý Đăng Ký
-        public static bool DangKy(string ten, string sdt, string email, string matKhau)
+        // Kiểm tra tên đăng nhập đã tồn tại trong bảng Users chưa.
+        public static async Task<bool> KiemTraTenDangNhapTonTai(string tenDangNhap)
         {
-            // Gọi lớp MatKhau để lấy Salt và chuỗi băm
-            var (salt, bam) = MatKhau.Tao(matKhau);
-
+            const string sql = "SELECT COUNT(*) FROM Users WHERE TenDangNhap = @ten";
             using var conn = new SqlConnection(ChuoiKetNoi);
-            // Câu lệnh SQL dùng tham số (chống SQL Injection)
-            const string sql = @"INSERT INTO Users (TenDangNhap, SoDienThoai, Email, MatKhauBam, Salt) 
-                                 VALUES (@ten, @sdt, @email, @bam, @salt)";
             using var cmd = new SqlCommand(sql, conn);
-
-            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
-            cmd.Parameters.Add("@sdt", SqlDbType.VarChar, 10).Value = sdt;
-            // Nếu email rỗng thì lưu NULL vào DB
-            cmd.Parameters.Add("@email", SqlDbType.NVarChar, 100).Value = string.IsNullOrEmpty(email) ? DBNull.Value : email;
-            cmd.Parameters.Add("@bam", SqlDbType.NVarChar, 64).Value = bam;
-            cmd.Parameters.Add("@salt", SqlDbType.NVarChar, 32).Value = salt;
+            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = tenDangNhap;
 
             try
             {
-                conn.Open();
-                int rows = cmd.ExecuteNonQuery();
-                return rows > 0; // Thêm thành công trả về true
-            }
-            catch (SqlException ex) when (ex.Number == 2627) // Mã lỗi vi phạm ràng buộc UNIQUE
-            {
-                throw new Exception("Tên đăng nhập này đã có người sử dụng. Vui lòng chọn tên khác!");
+                await conn.OpenAsync();
+                int soLuong = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                return soLuong > 0;
             }
             catch (Exception ex)
             {
-                // Bắt mọi lỗi kết nối (ví dụ: tắt SQL Server) để không văng màn hình ngoại lệ
-                throw new Exception("Lỗi kết nối (Đăng ký): " + ex.Message, ex);
+                throw new Exception("Không thể kết nối đến cơ sở dữ liệu. Vui lòng kiểm tra lại SQL Server.", ex);
             }
         }
 
-        // 2. Hàm xử lý Đăng Nhập
-        public static bool DangNhap(string ten, string matKhau)
+        // Thêm một tài khoản mới; mật khẩu được băm kèm salt trước khi lưu.
+        public static async Task DangKy(string tenDangNhap, string matKhau, string hoTen, string email)
         {
+            var (salt, bam) = MatKhau.Tao(matKhau);
+
+            const string sql = @"INSERT INTO Users (TenDangNhap, MatKhauBam, Salt, HoTen, Email)
+                                 VALUES (@ten, @bam, @salt, @hoTen, @email)";
             using var conn = new SqlConnection(ChuoiKetNoi);
-            const string sql = "SELECT MatKhauBam, Salt FROM Users WHERE TenDangNhap = @ten";
             using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
+            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = tenDangNhap;
+            cmd.Parameters.Add("@bam", SqlDbType.NVarChar, 64).Value = bam;
+            cmd.Parameters.Add("@salt", SqlDbType.NVarChar, 32).Value = salt;
+            cmd.Parameters.Add("@hoTen", SqlDbType.NVarChar, 50).Value = hoTen;
+            cmd.Parameters.Add("@email", SqlDbType.NVarChar, 100).Value =
+                string.IsNullOrEmpty(email) ? DBNull.Value : email;
 
             try
             {
-                conn.Open();
-                using var reader = cmd.ExecuteReader();
-                if (reader.Read())
+                await conn.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch (SqlException ex) when (ex.Number == 2627)
+            {
+                // Ràng buộc UNIQUE trên TenDangNhap là mức ngăn trùng thứ hai.
+                throw new Exception("Tên này đã có người dùng.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Không thể kết nối đến cơ sở dữ liệu. Vui lòng kiểm tra lại SQL Server.", ex);
+            }
+        }
+
+        // Kiểm tra đăng nhập. Trả về thông tin người dùng nếu đúng, ngược lại trả về null.
+        public static async Task<NguoiDung?> DangNhap(string tenDangNhap, string matKhau)
+        {
+            var nguoiDung = new NguoiDung { TenDangNhap = tenDangNhap };
+
+            using var conn = new SqlConnection(ChuoiKetNoi);
+            try
+            {
+                await conn.OpenAsync();
+
+                const string sql = @"SELECT MatKhauBam, Salt, HoTen, Email, NgayTao, LanDangNhapCuoi
+                                     FROM Users WHERE TenDangNhap = @ten";
+                using (var cmd = new SqlCommand(sql, conn))
                 {
+                    cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = tenDangNhap;
+                    using var reader = await cmd.ExecuteReaderAsync();
+
+                    if (!await reader.ReadAsync())
+                    {
+                        return null;
+                    }
+
                     string bamLuu = reader.GetString(0);
                     string saltLuu = reader.GetString(1);
 
-                    // Kiểm tra mật khẩu bằng lớp MatKhau
-                    if (MatKhau.KiemTra(matKhau, saltLuu, bamLuu))
+                    if (!MatKhau.KiemTra(matKhau, saltLuu, bamLuu))
                     {
-                        return true; // Đăng nhập thành công
+                        return null;
                     }
+
+                    nguoiDung.HoTen = reader.GetString(2);
+                    nguoiDung.Email = reader.IsDBNull(3) ? "" : reader.GetString(3);
+                    nguoiDung.NgayTao = reader.GetDateTime(4);
+                    nguoiDung.LanDangNhapCuoi = reader.IsDBNull(5) ? null : reader.GetDateTime(5);
                 }
-                return false; // Sai tên hoặc sai mật khẩu
+
+                // Cập nhật thời điểm đăng nhập gần nhất.
+                const string sqlCapNhat = "UPDATE Users SET LanDangNhapCuoi = SYSDATETIME() WHERE TenDangNhap = @ten";
+                using (var cmd = new SqlCommand(sqlCapNhat, conn))
+                {
+                    cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = tenDangNhap;
+                    await cmd.ExecuteNonQueryAsync();
+                }
+
+                return nguoiDung;
             }
             catch (Exception ex)
             {
-                throw new Exception("Lỗi kết nối (Đăng nhập): " + ex.Message, ex);
-            }
-        }
-
-        // 3. Sinh mã OTP gồm 6 chữ số
-        public static string TaoMaOTP()
-        {
-            return Random.Shared.Next(100000, 1000000).ToString();
-        }
-
-        // 4. Kiểm tra tài khoản có khớp Tên đăng nhập, SĐT và Email không (dùng khi quên mật khẩu)
-        public static bool KiemTraNguoiDung(string ten, string sdt, string email)
-        {
-            using var conn = new SqlConnection(ChuoiKetNoi);
-            const string sql = @"SELECT COUNT(*) FROM Users
-                                 WHERE TenDangNhap = @ten AND SoDienThoai = @sdt AND Email = @email";
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
-            cmd.Parameters.Add("@sdt", SqlDbType.VarChar, 10).Value = sdt;
-            cmd.Parameters.Add("@email", SqlDbType.NVarChar, 100).Value = email;
-
-            try
-            {
-                conn.Open();
-                return (int)cmd.ExecuteScalar() > 0;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi kết nối (Kiểm tra người dùng): " + ex.Message, ex);
-            }
-        }
-
-        // 5. Lưu mã OTP vào CSDL, có hiệu lực trong 5 phút
-        public static void LuuMaOTP(string ten, string maOTP)
-        {
-            using var conn = new SqlConnection(ChuoiKetNoi);
-            const string sql = @"UPDATE Users
-                                 SET MaOTP = @otp, ThoiGianHetHanOTP = DATEADD(MINUTE, 5, SYSDATETIME())
-                                 WHERE TenDangNhap = @ten";
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.Add("@otp", SqlDbType.VarChar, 6).Value = maOTP;
-            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
-
-            try
-            {
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi kết nối (Gửi OTP): " + ex.Message, ex);
-            }
-        }
-
-        // 6. Kiểm tra mã OTP nhập vào có đúng và còn hiệu lực không
-        public static bool KiemTraMaOTP(string ten, string maOTP)
-        {
-            using var conn = new SqlConnection(ChuoiKetNoi);
-            const string sql = @"SELECT COUNT(*) FROM Users
-                                 WHERE TenDangNhap = @ten AND MaOTP = @otp
-                                       AND ThoiGianHetHanOTP > SYSDATETIME()";
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
-            cmd.Parameters.Add("@otp", SqlDbType.VarChar, 6).Value = maOTP;
-
-            try
-            {
-                conn.Open();
-                return (int)cmd.ExecuteScalar() > 0;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi kết nối (Kiểm tra OTP): " + ex.Message, ex);
-            }
-        }
-
-        // 7. Đặt lại mật khẩu mới và xóa OTP đã dùng
-        public static bool DatLaiMatKhau(string ten, string matKhauMoi)
-        {
-            var (salt, bam) = MatKhau.Tao(matKhauMoi);
-
-            using var conn = new SqlConnection(ChuoiKetNoi);
-            const string sql = @"UPDATE Users
-                                 SET MatKhauBam = @bam, Salt = @salt,
-                                     MaOTP = NULL, ThoiGianHetHanOTP = NULL
-                                 WHERE TenDangNhap = @ten";
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.Add("@bam", SqlDbType.NVarChar, 64).Value = bam;
-            cmd.Parameters.Add("@salt", SqlDbType.NVarChar, 32).Value = salt;
-            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 20).Value = ten;
-
-            try
-            {
-                conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi kết nối (Đặt lại mật khẩu): " + ex.Message, ex);
+                throw new Exception("Không thể kết nối đến cơ sở dữ liệu. Vui lòng kiểm tra lại SQL Server.", ex);
             }
         }
     }

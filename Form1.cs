@@ -10,44 +10,76 @@ namespace CRUD_APP
             InitializeComponent();
         }
 
-        private void btnDangNhap_Click(object sender, EventArgs e)
+        // Nút Đăng nhập
+        private async void btnDangNhap_Click(object sender, EventArgs e)
         {
-            string ten = txtTen.Text.Trim();
-            string mk = txtPassword.Text;
+            lblLoi.Text = "";
 
-            if (string.IsNullOrEmpty(ten) || string.IsNullOrEmpty(mk))
+            string tenDangNhap = txtTenDangNhap.Text.Trim();
+            string matKhau = txtMatKhau.Text;
+
+            if (string.IsNullOrEmpty(tenDangNhap))
             {
-                MessageBox.Show("Vui lòng nhập tên đăng nhập và mật khẩu!");
+                lblLoi.Text = "Vui lòng nhập tên đăng nhập.";
+                txtTenDangNhap.Focus();
                 return;
             }
 
+            if (string.IsNullOrEmpty(matKhau))
+            {
+                lblLoi.Text = "Vui lòng nhập mật khẩu.";
+                txtMatKhau.Focus();
+                return;
+            }
+
+            btnDangNhap.Enabled = false;
+            btnDangNhap.Text = "Đang xử lý...";
             try
             {
-                if (XuLyNguoiDung.DangNhap(ten, mk))
+                NguoiDung? nguoiDung = await XuLyNguoiDung.DangNhap(tenDangNhap, matKhau);
+
+                if (nguoiDung == null)
                 {
-                    MessageBox.Show("Đăng nhập thành công! Chào " + ten);
+                    // Sai tên hoặc sai mật khẩu đều trả về cùng một thông báo.
+                    lblLoi.Text = "Tên đăng nhập hoặc mật khẩu không đúng.";
+                    txtMatKhau.Clear();
+                    txtMatKhau.Focus();
                 }
                 else
                 {
-                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!");
+                    this.Hide();
+                    using (FormChinh formChinh = new FormChinh(nguoiDung))
+                    {
+                        formChinh.ShowDialog();
+                    }
+                    this.Show();
+                    txtMatKhau.Clear();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblLoi.Text = ex.Message;
+            }
+            finally
+            {
+                btnDangNhap.Enabled = true;
+                btnDangNhap.Text = "Đăng nhập";
             }
         }
 
-        private void llbDangKyTaiKhoan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        // Nút Thoát
+        private void btnThoat_Click(object sender, EventArgs e)
         {
-            DangKy formDangKy = new DangKy();
-            formDangKy.ShowDialog();
+            this.Close();
         }
 
-        private void llbQuenMatKhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        // Liên kết chuyển sang form Đăng ký
+        private void llbDangKy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            QuenMatKhau formQuenMK = new QuenMatKhau();
-            formQuenMK.ShowDialog();
+            using (DangKy formDangKy = new DangKy())
+            {
+                formDangKy.ShowDialog();
+            }
         }
     }
 }
