@@ -5,3 +5,7 @@ obj/
 
 # Visual Studio user settings
 *.csproj.user
+
+# Báo cáo, đề bài và tài liệu nộp kèm (giữ cục bộ, không đẩy lên GitHub)
+*.pdf
+*.docx
